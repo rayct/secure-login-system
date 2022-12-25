@@ -1,6 +1,7 @@
 import hashlib
 import socket
 import sqlite3
+import threading
 
 server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 server.bind(("localhost", 9999))
@@ -22,5 +23,13 @@ def handle_connection(c):
 
     if cur.fetchall():
         c.send("Login successful!".encode())
+    # secrets
+    # services
     else:
         c.send("Login failed!".encode())
+
+
+
+while True:
+    client, addr = server.accept()
+    threading.Thread(target=handle_connection, args=(client,)).start()
