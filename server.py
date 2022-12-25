@@ -13,7 +13,7 @@ def handle_connection(c):
     c.send("Username: ".encode())
     username = c.recv(1024).decode()
     c.send("Password: ".encode())
-    password = c.recv(1024).decode()
+    password = c.recv(1024)
     password = hashlib.sha256(password).hexdigest()
 
     conn = sqlite3.connect("userdata.db")
@@ -27,7 +27,6 @@ def handle_connection(c):
     # services
     else:
         c.send("Login failed!".encode())
-
 
 
 while True:
