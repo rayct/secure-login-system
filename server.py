@@ -1,7 +1,6 @@
-import sqlite3
 import hashlib
 import socket
-import threading
+import sqlite3
 
 server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 server.bind(("localhost", 9999))
